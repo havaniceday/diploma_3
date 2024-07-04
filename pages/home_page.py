@@ -35,9 +35,9 @@ class HomePage(HeaderPage):
         return random.choice(elements)
 
     @allure.step('Найти открытое модальное окно ингредиента')
-    def get_opened_ingredient_modal(self):
+    def get_opened_ingredient_modal(self, timeout=15):
         try:
-            opened_modal = self.wait_visibility_and_return_element(HomePageLocators.INGREDIENT_MODAL_DESCRIPTION)
+            opened_modal = self.wait_visibility_and_return_element(HomePageLocators.INGREDIENT_MODAL_DESCRIPTION, timeout)
             return opened_modal
         except TimeoutException:
             return None

@@ -29,7 +29,7 @@ class RegisterPageLocators:
 class MyAccountPageLocators:
     EXIT_BUTTON = By.XPATH, "//button[contains(text(), 'Выход')]"
     ORDERS_HISTORY_LINK = By.XPATH, "//a[text()='История заказов']"
-    ORDER_HISTORY_LATEST = By.XPATH, "//ul[contains(@class, 'OrderHistory_profileList__374GU')]/li[1]//p[@class='text text_type_digits-default']"
+    ORDER_HISTORY_LATEST = By.XPATH, "//ul[contains(@class, 'OrderHistory_profileList')]/li[1]//p[@class='text text_type_digits-default']"
 
 
 class HomePageLocators:
@@ -38,9 +38,9 @@ class HomePageLocators:
     INGREDIENTS_LIST_BUNS = (By.XPATH, "//div[contains(@class, 'BurgerIngredients_ingredients')]//h2[text()='Булки']/following-sibling::ul[1]//a")
     INGREDIENTS_LIST_FILLINGS = (By.XPATH, "//div[contains(@class, 'BurgerIngredients_ingredients')]//h2[text()='Начинки']/following-sibling::ul[1]//a")
     INGREDIENTS_LIST_SAUCE = (By.XPATH, "//div[contains(@class, 'BurgerIngredients_ingredients')]//h2[text()='Соусы']/following-sibling::ul[1]//a")
-    INGREDIENT_MODAL_DESCRIPTION = (By.XPATH, ".//section[@class = 'Modal_modal_opened__3ISw4 Modal_modal__P3_V5']/div[@class = 'Modal_modal__container__Wo2l_']")
+    INGREDIENT_MODAL_DESCRIPTION = (By.XPATH, ".//section[contains(@class, 'Modal_modal_opened')]/div[contains(@class, 'Modal_modal__container')]")
     INGREDIENT_MODAL_CLOSE_BUTTON = (By.XPATH, "//section[contains(@class, 'Modal_modal_opened')]//button[contains(@class, 'Modal_modal__close')]")
-    ORDER_CART = (By.XPATH, './/section[@class = "BurgerConstructor_basket__29Cd7 mt-25 "]')
+    ORDER_CART = (By.XPATH, './/section[contains(@class, "BurgerConstructor_basket")]')
     ORDER_BUTTON = (By.XPATH, './/button[text()="Оформить заказ"]')
     ORDER_NUMBER = (By.XPATH, '//div[contains(@class, "Modal_modal__contentBox")]//p[text()="идентификатор заказа"]/preceding-sibling::h2')
 
@@ -52,12 +52,11 @@ class HeaderLocators:
 
 
 class FeedPageLocators:
-    ALL_TIME_COUNTER = By.XPATH, '(.//p[contains(@class, "OrderFeed_number__2MbrQ")])[1]'
+    ALL_TIME_COUNTER = By.XPATH, '(.//p[contains(@class, "OrderFeed_number")])[1]'
     ORDERS_LIST = By.XPATH, '(.//li[contains(@class, "OrderHistory_listItem")]/a[contains(@class, "OrderHistory")])'
     ORDERS_NUMBERS_LIST = By.XPATH, "//div[contains(@class, 'OrderHistory_textBox')]//p[contains(@class, 'text_type_digits-default')]"
     ORDER_NUMBER_IN_IN_PROGRESS = (By.XPATH, '//p[text()="В работе:"]/following-sibling::ul[2]/li[text()="{}"]')
     ORDERS_IN_PROGRESS_NUMBERS_LIST = (By.XPATH,'//p[text()="В работе:"]/following-sibling::ul[2]/li[not(text()="Все текущие заказы готовы!")]')
-    ORDER_MODAL_DESCRIPTION = By.XPATH, (".//section[@class = 'Modal_modal_opened__3ISw4 Modal_modal__P3_V5']"
-                                         "/div[@class = 'Modal_modal__container__Wo2l_']")
-    ORDERS_TOTAL = By.XPATH, "//p[text()='Выполнено за все время:']/following-sibling::p[contains(@class, 'OrderFeed_number__2MbrQ')]"
-    ORDERS_TODAY = By.XPATH, "//p[text()='Выполнено за сегодня:']/following-sibling::p[contains(@class, 'OrderFeed_number__2MbrQ')]"
+    ORDER_MODAL_DESCRIPTION = (By.XPATH, ".//section[contains(@class,'Modal_modal_opened')]/div[contains(@class,'Modal_modal__container')]")
+    ORDERS_TOTAL = By.XPATH, "//p[text()='Выполнено за все время:']/following-sibling::p[contains(@class, 'OrderFeed_number')]"
+    ORDERS_TODAY = By.XPATH, "//p[text()='Выполнено за сегодня:']/following-sibling::p[contains(@class, 'OrderFeed_number')]"

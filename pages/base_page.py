@@ -11,23 +11,22 @@ class BasePage:
     def __init__(self, driver):
         self.driver = driver
 
-    def wait_element_visibility(self, locator):
-        return WebDriverWait(self.driver, 15).until(expected_conditions.visibility_of_element_located(locator))
+    def wait_element_visibility(self, locator, timeout=15):
+        return WebDriverWait(self.driver, timeout).until(expected_conditions.visibility_of_element_located(locator))
 
     def wait_element_clickable(self, locator, timeout=15):
         return WebDriverWait(self.driver, timeout).until(expected_conditions.element_to_be_clickable(locator))
-
 
     def wait_page_loaded(self, timeout=15):
         WebDriverWait(self.driver, timeout).until(
             lambda driver: driver.execute_script('return document.readyState') == 'complete'
         )
 
-    def wait_visibility_and_return_element(self, locator):
-        self.wait_element_visibility(locator)
+    def wait_visibility_and_return_element(self, locator, timeout=15):
+        self.wait_element_visibility(locator, timeout)
         return self.driver.find_element(*locator)
 
-    def wait_clickable_and_return_element(self, locator, retries=3, timeout=25):
+    def wait_clickable_and_return_element(self, locator, retries=3, timeout=20):
         for attempt in range(retries):
             try:
                 self.wait_element_clickable(locator, timeout)
@@ -62,11 +61,11 @@ class BasePage:
         return self.driver.current_url
 
     def get_text(self, locator):
-        element = self.wait_visibility_and_return_element(locator)
+        element = self.wait_visibility_and_return_element(locator, 10)
         return element.text
 
     def fill_input(self, locator, data):
-        element = self.wait_clickable_and_return_element(locator)
+        element = self.wait_clickable_and_return_element(locator, 5, 20)
         element.send_keys(data)
 
     @allure.step("Скроллим и кликаем на элемент")

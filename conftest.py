@@ -11,23 +11,26 @@ from pages.login_page import LoginPage
 @pytest.fixture(params=['firefox', 'chrome'])
 def driver(request):
     browser = None
-    if request.param == 'firefox':
-        firefox_options = webdriver.FirefoxOptions()
-        firefox_options.add_argument("--width=1280")
-        firefox_options.add_argument("--height=720")
-        firefox_options.add_argument('--no-sandbox')
-        browser = webdriver.Firefox(options=firefox_options)
-    elif request.param == 'chrome':
-        chrome_options = webdriver.ChromeOptions()
-        chrome_options.add_argument("--width=1280")
-        chrome_options.add_argument("--height=720")
-        chrome_options.add_argument('--no-sandbox')
-        browser = webdriver.Chrome(options=chrome_options)
-    browser.get(Urls.BASE)
     try:
+        if request.param == 'firefox':
+            firefox_options = webdriver.FirefoxOptions()
+            firefox_options.add_argument("--width=1280")
+            firefox_options.add_argument("--height=720")
+            firefox_options.add_argument('--no-sandbox')
+            browser = webdriver.Firefox(options=firefox_options)
+        elif request.param == 'chrome':
+            chrome_options = webdriver.ChromeOptions()
+            chrome_options.add_argument("--width=1280")
+            chrome_options.add_argument("--height=720")
+            chrome_options.add_argument('--no-sandbox')
+            browser = webdriver.Chrome(options=chrome_options)
+        browser.get(Urls.BASE)
+
         yield browser
     finally:
-        browser.quit()
+        if browser is not None:
+            browser.close()
+            browser.quit()
 
 
 @allure.step("Создание и удаление пользователя через апи")

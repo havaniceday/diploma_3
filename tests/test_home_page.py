@@ -30,7 +30,7 @@ class TestHomePage:
         home_page = HomePage(driver)
         ingredient = home_page.select_random_ingredient()
         home_page.scroll_and_click(ingredient)
-        modal = home_page.get_opened_ingredient_modal()
+        modal = home_page.get_opened_ingredient_modal(5)
         assert modal is not None
         assert ingredient.text.split('\n')[2] == modal.text.split('\n')[1]
 
@@ -43,7 +43,7 @@ class TestHomePage:
         modal = home_page.get_opened_ingredient_modal()
         assert modal is not None
         home_page.close_opened_modal()
-        modal = home_page.get_opened_ingredient_modal()
+        modal = home_page.get_opened_ingredient_modal(timeout=0.5)
         assert modal is None
 
     @allure.title('Счетчик ингредиента увеличивается')
